@@ -4,6 +4,7 @@ from account.models import CustomUser
 
 class Author(models.Model):
     first_name = models.CharField(max_length=50, verbose_name="Имя", null=False)
+    slug = models.CharField(max_length=50, null=False)
     second_name = models.CharField(max_length=50, verbose_name="Фамилия", null=False)
     patronymic = models.CharField(max_length=50, verbose_name="Отчество", null=True)
     birth_date = models.DateField(verbose_name="Дата рождения", null=True)
@@ -13,6 +14,7 @@ class Author(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название", null=False)
+    slug = models.CharField(max_length=100, null=False)
     description = models.TextField(verbose_name="Описание", null=True)
     pages = models.IntegerField(verbose_name="Количество страниц", null=False)
     cost = models.FloatField(verbose_name="Цена", null=False)

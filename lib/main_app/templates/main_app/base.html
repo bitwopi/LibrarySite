@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link type="text/css" href="../../static/main_app/css/base.css" rel="stylesheet">
+     <link type="text/css" href="{% static 'main_app/css/base.css' %}" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="header">
+        <nav class="container">
+            <div class="left-side">
+                <a href=""><img src="../../static/main_app/images/Logo.png" class="logo"></a>
+                <a class="book-btn">Книги</a>
+            </div>
+            <div class="right-side">
+                <form class="search-form" action="" method="get">
+                    <input class="search-bar" id="Search" type="search" name="q" placeholder="Введите название книги...">
+                    <button class="search-btn" type="submit">Найти</button>
+                </form>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.avatar %}
+                        <div class="avatar">{{ request.user.avatar }}</div>
+                    {% else %}
+                        <a href="{% url 'logout' %}">{{ request.user.second_name }} {{ request.user.first_name }}</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </div> 
+        </nav>
+    </div>
+    <div class="container content">
+        fsafsa
+    </div>
+    <div class="footer">
+        <nav class="container">
+            <div class="rights">
+                <div>©2022 Библиотека</div>
+                <div>All rights reserved</div>       
+            </div>
+            <div class="footer-info">
+                <a>О нас</a>
+                <a>Контактные данные</a>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

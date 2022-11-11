@@ -1,0 +1,118 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+.container{
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+}
+.content{
+    padding: 0 30px;
+    padding-top: 100px;
+    background-color: #CBCBCB;
+    min-height: 880px;
+}
+.header{
+    height: 100px;
+    background-color: #A3A3A3;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    color: white;
+}
+.header nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin: 0 auto;
+}
+.left-side{
+    display: flex;
+    justify-content: left;
+    width: 30%;
+    align-items: center;
+}
+.right-side{
+    display: flex;
+    justify-content: right;
+    width: 60%;
+    align-items: center;
+}
+.book-btn{
+    padding: 18px 62px;
+    border: 1px solid #373737;
+    background-color: #757575;
+    border-radius: 10px;
+    max-height: 60px;  
+    font-size: medium;
+    margin-left: 3em;
+}
+.search-form{
+    margin: 0;
+    position: relative;
+    width: 100%;
+    margin-right: 3em;
+}
+.search-bar{
+    width: 100%;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 29px;
+    padding-right: 50%;
+    border: 1px solid #373737;
+    border-radius: 10px;
+    background-color: #757575;
+    max-height: 60px;
+    font-size: medium;
+}
+::placeholder{
+    color: white;
+    opacity: 0.7;
+}
+#Search::-webkit-search-cancel-button{
+    position:absolute;
+    right:140px;
+    color: white;
+}
+input, select, textarea{
+    color: white;
+}
+
+textarea:focus, input:focus {
+    color: white;
+}
+.search-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 18px 37px;
+    border: 1px solid #373737;
+    color: white;
+    background-color: #565656;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: medium;
+}
+.footer{
+    height: 100px;
+    background-color: #A3A3A3;
+    width: 100%;
+    color: white;
+}
+.footer nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 2%;
+    align-items: center;
+    height: 100%;
+}
+.footer a{
+    display: block;
+}
+.footer-info{
+    text-align: right;
+}

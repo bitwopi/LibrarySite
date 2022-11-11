@@ -1,0 +1,7 @@
+{% extends 'account/registration/auth_form_base.html' %}
+{% block registration %}
+        <button class="auth-btn" type="submit">Подтвердить</button>
+    </form>
+    <a href="{% url 'login' %}"><p>У меня уже есть аккаунт</p></a>
+    <a href="{% url 'home' %}"><p>Вернуться на главную</p></a>
+{% endblock %}

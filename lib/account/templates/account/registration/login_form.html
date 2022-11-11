@@ -1,0 +1,8 @@
+{% extends 'account/registration/auth_form_base.html' %}
+{% block login %}
+        <button class="auth-btn" type="submit">Войти</button>
+    </form>
+    <a href="{% url 'registration' %}"><p>Регистрация</p></a>
+    <a href="{% url 'reset_password' %}"><p>Восстановление пароля</p></a>
+    <a href="{% url 'home' %}"><p>Вернуться на главную</p></a>
+{% endblock %}

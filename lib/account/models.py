@@ -36,6 +36,7 @@ class CustomUser(AbstractBaseUser):
     patronymic = models.CharField(max_length=50, verbose_name="Отчество", blank=True, null=True)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, default=None, null=True, blank=True,
                               verbose_name="Группа")
+    birth_date = models.DateField(verbose_name="Дата рождения", null=False)
     date_joined = models.DateField(auto_now_add=True, verbose_name="Дата создания аккаунта")
     avatar = models.ImageField(upload_to="users/avatars", null=True, blank=True)
     # CONSTANTS
