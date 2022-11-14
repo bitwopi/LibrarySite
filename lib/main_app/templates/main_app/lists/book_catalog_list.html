@@ -1,0 +1,8 @@
+{% extends "main_app/base.html" %}
+{% block catalog %}
+    {% for book in books %}
+        <a href="{{ book.get_absolute_url }}">
+            <img class="card" src="{{ book.cover.url }}">
+        </a>
+    {% endfor %}
+{% endblock catalog %}

@@ -1,0 +1,20 @@
+.content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 2em;
+    row-gap: 2em;
+    grid-auto-columns: minmax(auto, auto);
+}
+.card{
+    margin: 0;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    width: 150px;
+    height: 200px;
+    border-radius: 15px;
+}
+.card:hover{
+    border: solid 3px rgb(255, 255, 255);
+}

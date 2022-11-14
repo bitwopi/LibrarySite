@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from account.models import CustomUser
 
 
@@ -6,10 +7,24 @@ class Author(models.Model):
     first_name = models.CharField(max_length=50, verbose_name="Имя", null=False)
     slug = models.CharField(max_length=50, null=False)
     second_name = models.CharField(max_length=50, verbose_name="Фамилия", null=False)
-    patronymic = models.CharField(max_length=50, verbose_name="Отчество", null=True)
-    birth_date = models.DateField(verbose_name="Дата рождения", null=True)
+    patronymic = models.CharField(max_length=50, verbose_name="Отчество", null=True, blank=True)
+    birth_date = models.DateField(verbose_name="Дата рождения", null=True, blank=True)
     description = models.TextField(verbose_name="Описание", null=True)
-    photo = models.ImageField(upload_to="authors/photos", null=True, blank=True)
+    photo = models.ImageField(upload_to="authors/photos", null=False)
+
+    # META CLASS
+    class Meta:
+        ordering = ['second_name']
+
+    # TO STRING METHOD
+    def __str__(self):
+        return self.second_name
+
+    # ABSOLUTE URL METHOD
+    def get_absolute_url(self):
+        return reverse('author', kwargs={'author_slug': self.slug})
+
+    # OTHER METHODS
 
 
 class Book(models.Model):
@@ -20,6 +35,18 @@ class Book(models.Model):
     cost = models.FloatField(verbose_name="Цена", null=False)
     cover = models.ImageField(upload_to="books/covers", null=True, blank=True)
     author = models.ForeignKey('Author', on_delete=models.CASCADE, null=False)
+
+    # META CLASS
+    class Meta:
+        ordering = ['name']
+
+    # TO STRING METHOD
+    def __str__(self):
+        return self.name
+
+    # ABSOLUTE URL METHOD
+    def get_absolute_url(self):
+        return reverse('book', kwargs={'book_slug': self.slug})
 
 
 class Instance(models.Model):

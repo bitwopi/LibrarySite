@@ -6,16 +6,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link type="text/css" href="../../static/main_app/css/base.css" rel="stylesheet">
-     <link type="text/css" href="{% static 'main_app/css/base.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'main_app/css/base.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'main_app/css/book_catalog_list.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'main_app/css/pagination.css' %}" rel="stylesheet">
     <title>{{ title }}</title>
 </head>
 <body>
     <div class="header">
         <nav class="container">
             <div class="left-side">
-                <a href=""><img src="../../static/main_app/images/Logo.png" class="logo"></a>
-                <a class="book-btn">Книги</a>
+                <a href="{% url 'home' %}"><img src="../../static/main_app/images/Logo.png" class="logo"></a>
+                <a class="book-btn" href="{% url 'book-catalog' %}">Книги</a>
             </div>
             <div class="right-side">
                 <form class="search-form" action="" method="get">
@@ -24,7 +25,7 @@
                 </form>
                 {% if request.user.is_authenticated %}
                     {% if request.user.avatar %}
-                        <div class="avatar">{{ request.user.avatar }}</div>
+                        <img class="avatar" src="{{ request.user.avatar.url }}">
                     {% else %}
                         <a href="{% url 'logout' %}">{{ request.user.second_name }} {{ request.user.first_name }}</a>
                     {% endif %}
@@ -35,8 +36,12 @@
         </nav>
     </div>
     <div class="container content">
-        fsafsa
+        {% block catalog %}
+        {% endblock catalog %}
+        {% block book_detail %}
+        {% endblock book_detail %}
     </div>
+    {% include 'main_app/includes/pagination.html' %}
     <div class="footer">
         <nav class="container">
             <div class="rights">

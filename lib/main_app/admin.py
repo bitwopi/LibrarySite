@@ -11,9 +11,9 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'description', 'pages', 'cost', 'author',)
+    list_display = ('id', 'name', 'description', 'pages', 'cost', 'author', 'cover')
     search_fields = ('name',)
-    list_editable = ('name', 'description', 'pages', 'cost', 'author',)
+    list_editable = ('name', 'description', 'pages', 'cost', 'author', 'cover')
     prepopulated_fields = {'slug': ("name",)}
 
 
