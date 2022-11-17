@@ -1,6 +1,28 @@
 {% extends "main_app/base.html" %}
 {% block book_detail %}
-    <div class="info">
-         <div class="name">{{ book.name }}</div>
-    </div>
+    <div class="detail-content">
+        <img class="cover" src="{{ book.cover.url }}">
+        <div class="info">
+            <h1 class="text-border">{{ book.name }}</h1>
+            <div class="info-bg">
+                <div class="info-element">Количество страниц: <span class="text-border">{{ book.pages }} стр.</span></div>
+                <div class="info-element">Залог: <span class="text-border">{{ book.get_cost }} рублей</span></div>
+                <div class="info-element">Цена аренды: <span class="text-border">{{ book.get_rent_cost }} рублей / день</span></div>
+                <div class="info-element">Автор: <a class="text-border" href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></div>
+                <div class="info-element">Жанры:
+                    {% for genre in book.get_genres %}
+                        {% if genre == book.get_genres|last %}
+                            <a class="text-border" href="{{ genre.get_absolute_url }}">{{ genre.name }}</a>
+                        {% else %}
+                            <a class="text-border" href="{{ genre.get_absolute_url }}">{{ genre.name }},</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="description">
+            <h1 class="text-border">Описание</h1>
+            <div class="info-bg">{{ book.description }}</div>      
+        </div>
+    </div>  
 {% endblock book_detail %}
