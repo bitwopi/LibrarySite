@@ -4,6 +4,8 @@ import dotenv
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 from django.db.models import Q
+
+from .forms import FilterForm
 from .models import Book, Genre, Author
 
 dotenv.load_dotenv()
@@ -23,7 +25,25 @@ class BooksCatalog(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(BooksCatalog, self).get_context_data(**kwargs)
         context['title'] = "Каталог"
+        context['form'] = FilterForm()
+        if 'genres' in self.request.GET:
+            context['genres'] = self.request.GET['genres']
+        if 'cost' in self.request.GET:
+            context['cost'] = self.request.GET['cost']
+        if 'pages' in self.request.GET:
+            context['pages'] = self.request.GET['pages']
         return context
+
+    def get_queryset(self):
+        queryset = Book.objects.all()
+        if 'genres' in self.request.GET and self.request.GET['genres'] != '':
+            queryset = queryset.filter(genres=self.request.GET['genres'])
+        if 'pages' in self.request.GET and self.request.GET['pages'] != '':
+            queryset = queryset.filter(pages__lt=self.request.GET['pages'])
+        if 'cost' in self.request.GET and self.request.GET['cost'] != '':
+            queryset = queryset.filter(cost__lt=self.request.GET['cost'])
+        print(queryset)
+        return queryset
 
 
 class ShowGenre(ListView):

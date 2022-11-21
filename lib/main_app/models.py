@@ -15,7 +15,7 @@ class Author(models.Model):
     # META CLASS
     class Meta:
         ordering = ['second_name']
-        verbose_name = "Авторы"
+        verbose_name = "Автор"
         verbose_name_plural = "Авторы"
 
     # TO STRING METHOD
@@ -39,7 +39,7 @@ class Genre(models.Model):
     # META CLASS
     class Meta:
         ordering = ['name']
-        verbose_name = "Жанры"
+        verbose_name = "Жанр"
         verbose_name_plural = "Жанры"
 
     # TO STRING METHOD
@@ -65,7 +65,7 @@ class Book(models.Model):
     # META CLASS
     class Meta:
         ordering = ['name']
-        verbose_name = "Книги"
+        verbose_name = "Книга"
         verbose_name_plural = "Книги"
 
     # TO STRING METHOD
@@ -86,16 +86,28 @@ class Book(models.Model):
     def get_genres(self):
         return [genre for genre in self.genres.all()]
 
+    def get_in_stock_instances(self):
+        return len(self.instances.filter(in_stock=True))
+
 
 class Instance(models.Model):
-    book = models.ForeignKey('Book', on_delete=models.CASCADE, null=False)
+    book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='instances', verbose_name="Книга")
     in_stock = models.BooleanField(default=True, verbose_name="В наличии")
+
+    class Meta:
+        verbose_name = "Экземпляр"
+        verbose_name_plural = "Экземпляры"
 
 
 class Rent(models.Model):
-    user_email = models.ForeignKey(CustomUser, models.CASCADE, null=False)
-    instance_id = models.ForeignKey("Instance", models.CASCADE, null=False)
+    user_email = models.ForeignKey(CustomUser, models.CASCADE, null=False, verbose_name="Email пользователя")
+    instance_id = models.ForeignKey("Instance", models.CASCADE, null=False, related_name='rent',
+                                    verbose_name="Экземпляр")
     start_date = models.DateField(verbose_name="Дата начала", null=False)
     end_date = models.DateField(verbose_name="Дата окончания", null=False)
     actual_end_date = models.DateField(verbose_name="Дата сдачи", null=True)
+
+    class Meta:
+        verbose_name = "Договор об аренде"
+        verbose_name_plural = "Договоры об аренде"
 

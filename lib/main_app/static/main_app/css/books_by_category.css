@@ -1,5 +1,9 @@
 .content{
+    grid-template-areas: "posts";
+}
+.posts{
     padding-top: 200px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .title{
     position: absolute;

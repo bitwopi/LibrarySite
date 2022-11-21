@@ -3,15 +3,15 @@
             <nav class="paginator">
 
                     {% if page_obj.has_previous %}
-                    <a class="paginator-element" href="?page=1"><<</a>
-                    <a class="paginator-element" href="?page={{ page_obj.previous_page_number }}"><</a>
-                    <a class="paginator-element" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                    <a class="paginator-element" href="?page=1&genres={{ genres }}&pages={{ pages }}&cost={{ cost }}"><<</a>
+                    <a class="paginator-element" href="?page={{ page_obj.previous_page_number }}&genres={{ genres }}&pages={{ pages }}&cost={{ cost }}"><</a>
+                    <a class="paginator-element" href="?page={{ page_obj.previous_page_number }}&genres={{ genres }}&pages={{ pages }}&cost={{ cost }}">{{ page_obj.previous_page_number }}</a>
                     {% endif %}
                     <div class="paginator-element selected">{{page_obj.number}}</div>
                     {% if page_obj.has_next %}
-                    <a class="paginator-element" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                    <a class="paginator-element" href="?page={{ page_obj.next_page_number }}">></a>
-                    <a class="paginator-element" href="?page={{ paginator.num_pages }}">>></a>
+                    <a class="paginator-element" href="?page={{ page_obj.next_page_number }}&genres={{ genres }}&pages={{ pages }}&cost={{ cost }}">{{ page_obj.next_page_number }}</a>
+                    <a class="paginator-element" href="?page={{ page_obj.next_page_number }}&genres={{ genres }}&pages={{ pages }}&cost={{ cost }}">></a>
+                    <a class="paginator-element" href="?page={{ paginator.num_pages }}&genres={{ genres }}&pages={{ pages }}&cost={{ cost }}">>></a>
                     {% endif %}
             </nav>
         </div>

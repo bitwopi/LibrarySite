@@ -1,8 +1,8 @@
 .paginator-container{
     box-sizing: border-box;
-    margin: 0 auto;
     max-width: 1200px;
     background-color: #CBCBCB;
+    margin: 0 auto
 }
 .paginator{
     padding: 2em 0;

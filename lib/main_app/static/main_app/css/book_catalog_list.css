@@ -1,10 +1,25 @@
 .content{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "posts posts posts posts posts filter";
     column-gap: 2em;
     row-gap: 2em;
     grid-auto-columns: minmax(auto, auto);
+    background-color: white;
+    padding: 0;
+}
+.posts{
+    grid-area: posts;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 2em;
+    row-gap: 2em;
+    grid-auto-columns: minmax(auto, auto);
+    background-color: #CBCBCB;
+    padding: 120px 30px 20px 30px;
+    background-color: #CBCBCB;
+    min-height: 730px;
 }
 .card{
     margin: 0;
@@ -17,4 +32,39 @@
 }
 .card:hover{
     border: solid 3px rgb(255, 255, 255);
+}
+.filter-form{
+    display: flex;
+    grid-area: filter;
+    flex-flow: column;
+    box-sizing: border-box;
+    align-items: center;
+    background-color: #757575;
+    border: 1px solid #373737;
+    border-radius: 20px;
+    padding: 20px 10px;
+    color: white;
+    max-height: 300px;
+    max-width: 230px;
+    margin-top: 120px;
+}
+.filter-form p{
+    margin: 0;
+    margin-bottom: 20px;
+}
+.filter-form input, select{
+    box-sizing: border-box;
+    color: black;
+    width: 100%;
+}
+.btn{
+    padding: 10px;
+    background-color: #565656;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #373737;
+}
+.paginator-container{
+    grid-column: 1/6;
+    width: 100%;
 }

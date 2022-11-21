@@ -4,11 +4,20 @@
     <link type="text/css" href="{% static 'main_app/css/book_catalog_list.css' %}" rel="stylesheet">
 {% endblock extrastyles %}
 {% block catalog %}
-    {% block category %}
-    {% endblock category %}
-        {% for book in books %}
-        <a href="{{ book.get_absolute_url }}">
-            <img class="card" src="{{ book.cover.url }}">
-        </a>
-        {% endfor %}
+        {% if form %}
+        <form class="filter-form" action="{% url 'book-catalog' %}">
+            {{ form.as_p }}
+            <button class="btn" type="submit">Подтвердить</button>
+        </form>
+        {% endif %}
+        <div class="posts">
+            {% block category %}
+            {% endblock category %}
+            {% for book in books %}
+                <a href="{{ book.get_absolute_url }}">
+                    <img class="card" src="{{ book.cover.url }}">
+                </a>
+            {% endfor %}
+            {% include 'main_app/includes/pagination.html' %}
+        </div>
 {% endblock catalog %}

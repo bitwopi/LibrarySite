@@ -4,13 +4,14 @@
     <link type="text/css" href="{% static 'main_app/css/search_list.css' %}" rel="stylesheet">
 {% endblock extrastyles %}
 {% block search %}
+    <h1>Результаты поиска</h1>
     {% if data %}
         {% for item in data %}
           <div class="search-card">
             {% if item.cover %}
-              <a href="{{ item.get_absolute_url }}"><img src="{{ item.cover.url }}"></a>
+              <a href="{{ item.get_absolute_url }}"><img class="cover" src="{{ item.cover.url }}"></a>
             {% elif item.photo %}
-              <a href="{{ item.get_absolute_url }}"><img src="{{ item.photo.url }}"></a>
+              <a href="{{ item.get_absolute_url }}"><img class="photo" src="{{ item.photo.url }}"></a>
             {% endif %}
               <a href="{{ item.get_absolute_url }}">{{ item }}</a>
           </div>

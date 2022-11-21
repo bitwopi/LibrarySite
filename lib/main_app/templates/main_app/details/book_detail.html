@@ -12,6 +12,7 @@
             <div class="info-element">Залог: <span class="text-border">{{ book.get_cost }} рублей</span></div>
             <div class="info-element">Цена аренды: <span class="text-border">{{ book.get_rent_cost }} рублей / день</span></div>
             <div class="info-element">Автор: <a class="text-border" href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></div>
+            <div class="info-element">Книг в наличии: <span class="text-border">{{ book.get_in_stock_instances }} шт.</span></div>
             <div class="info-element">Жанры:
                 {% for genre in book.get_genres %}
                     {% if genre == book.get_genres|last %}
