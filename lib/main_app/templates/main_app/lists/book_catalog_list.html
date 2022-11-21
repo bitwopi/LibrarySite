@@ -1,12 +1,14 @@
 {% extends "main_app/base.html" %}
+{% load static %}
+{% block extrastyles %}
+    <link type="text/css" href="{% static 'main_app/css/book_catalog_list.css' %}" rel="stylesheet">
+{% endblock extrastyles %}
 {% block catalog %}
     {% block category %}
     {% endblock category %}
-    <div class="catalog-content">
         {% for book in books %}
         <a href="{{ book.get_absolute_url }}">
             <img class="card" src="{{ book.cover.url }}">
         </a>
         {% endfor %}
-    </div>
 {% endblock catalog %}

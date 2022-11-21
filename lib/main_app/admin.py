@@ -10,7 +10,8 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'second_name', 'patronymic', 'birth_date', 'description', 'get_html_photo')
     search_fields = ('second_name', 'first_name')
     list_editable = ('first_name', 'second_name', 'patronymic', 'birth_date', 'description',)
-    fields = ('first_name', 'second_name', 'patronymic', 'birth_date', 'description', 'photo', 'get_html_photo')
+    fields = ('first_name', 'second_name', 'slug', 'patronymic', 'birth_date', 'description', 'photo', 'get_html_photo')
+    readonly_fields = ('get_html_photo',)
     prepopulated_fields = {'slug': ("second_name", "first_name")}
 
     def get_html_photo(self, obj):

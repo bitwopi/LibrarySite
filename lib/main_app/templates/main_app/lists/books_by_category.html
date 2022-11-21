@@ -1,4 +1,9 @@
 {% extends "main_app/lists/book_catalog_list.html" %}
+{% load static %}
+{% block extrastyles %}
+    <link type="text/css" href="{% static 'main_app/css/book_catalog_list.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'main_app/css/books_by_category.css' %}" rel="stylesheet">
+{% endblock extrastyles %}
 {% block category %}
-    <h1>Книги в жанре {{ genre.name }}</h1>
+    <h1 class="title">Книги в жанре {{ genre.name }}</h1>
 {% endblock category %}

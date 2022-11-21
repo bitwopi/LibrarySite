@@ -1,0 +1,16 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block extrastyles %}
+    <link type="text/css" href="{% static 'main_app/css/detail.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'main_app/css/author_detail.css' %}" rel="stylesheet">
+{% endblock extrastyles %}
+{% block detail %}
+    <img class="photo" src="{{ author.photo.url }}">
+    <div class="info">
+        <h1 class="text-border">{{ author }}</h1>
+        <div class="info-bg">
+            <div class="info-element">Дата рождения: <span class="text-border">{{ author.birth_date }}</span></div>
+            <div class="info-element">{{ author.description }}</div>
+        </div>
+    </div>
+{% endblock detail %}

@@ -1,16 +1,16 @@
-.detail-content{
+.content{
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     background-color: #CBCBCB;
     grid-gap: 2em;
     grid-auto-columns: minmax(auto, auto);
     color: white;
 }
 .description{
-    grid-column: 1/4;
+    grid-column: 1/5;
 }
 .info{
-    grid-column: 2/3;
+    grid-column: 2/4;
     display: flex;
     flex-flow: column;
 }
@@ -26,7 +26,7 @@
     -1px 0 3px #373737, 
     0 -1px 3px #373737;
 }
-.info h1{
+h1{
     margin-top: 0;
     margin-bottom: 10px;
 }
@@ -43,4 +43,9 @@
     width: 300px;
     height: 500px;
     border-radius: 30px;
+}
+.photo{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
 }

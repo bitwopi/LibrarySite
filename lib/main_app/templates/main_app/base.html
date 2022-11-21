@@ -7,9 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link type="text/css" href="{% static 'main_app/css/base.css' %}" rel="stylesheet">
-    <link type="text/css" href="{% static 'main_app/css/book_catalog_list.css' %}" rel="stylesheet">
     <link type="text/css" href="{% static 'main_app/css/pagination.css' %}" rel="stylesheet">
-    <link type="text/css" href="{% static 'main_app/css/book_detail.css' %}" rel="stylesheet">
+    {% block extrastyles %}
+    {% endblock extrastyles %}
     <title>{{ title }}</title>
 </head>
 <body>
@@ -20,13 +20,13 @@
                 <a class="book-btn" href="{% url 'book-catalog' %}">Книги</a>
             </div>
             <div class="right-side">
-                <form class="search-form" action="" method="get">
+                <form class="search-form" action="{% url 'search' %}" method="get">
                     <input class="search-bar" id="Search" type="search" name="q" placeholder="Введите название книги...">
                     <button class="search-btn" type="submit">Найти</button>
                 </form>
                 {% if request.user.is_authenticated %}
                     {% if request.user.avatar %}
-                        <img class="avatar" src="{{ request.user.avatar.url }}">
+                        <a href="{% url 'logout' %}"><img class="avatar" src="{{ request.user.avatar.url }}"></a>
                     {% else %}
                         <a href="{% url 'logout' %}">{{ request.user.second_name }} {{ request.user.first_name }}</a>
                     {% endif %}
@@ -36,11 +36,17 @@
             </div> 
         </nav>
     </div>
+    {% block main_page_img %}
+    {% endblock main_page_img %}
     <div class="container content">
         {% block catalog %}
         {% endblock catalog %}
-        {% block book_detail %}
-        {% endblock book_detail %}
+        {% block detail %}
+        {% endblock detail %}
+        {% block main_page %}
+        {% endblock main_page %}
+        {% block search %}
+        {% endblock search %}
     </div>
     {% include 'main_app/includes/pagination.html' %}
     <div class="footer">

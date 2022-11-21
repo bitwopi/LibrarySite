@@ -20,7 +20,10 @@ class Author(models.Model):
 
     # TO STRING METHOD
     def __str__(self):
-        return self.first_name + " " + self.second_name
+        if self.patronymic:
+            return self.first_name + " " + self.second_name + " " + self.patronymic
+        else:
+            return self.first_name + " " + self.second_name
 
     # ABSOLUTE URL METHOD
     def get_absolute_url(self):

@@ -1,0 +1,14 @@
+.content{
+    padding-top: 30px;
+    min-height: 300px;
+}
+figure{
+    max-width: 1200px;
+    max-height: 500px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+figure img{
+    width: 100%;
+    max-height: 500px;
+}

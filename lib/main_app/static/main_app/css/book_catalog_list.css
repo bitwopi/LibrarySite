@@ -1,7 +1,7 @@
-.catalog-content{
+.content{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     column-gap: 2em;
     row-gap: 2em;
     grid-auto-columns: minmax(auto, auto);

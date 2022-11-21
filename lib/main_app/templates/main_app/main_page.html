@@ -1,0 +1,15 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block extrastyles %}
+    <link type="text/css" href="{% static 'main_app/css/main_page.css' %}" rel="stylesheet">
+{% endblock extrastyles %}
+{% block main_page_img %}
+    <figure>
+        <img src="{% static 'main_app/images/lib_main.jpg' %}">
+    </figure>
+{% endblock main_page_img %}
+{% block main_page %}
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, in distinctio ipsam hic aperiam excepturi eum illum dolores magni ullam aspernatur eligendi delectus, quia omnis cum explicabo reiciendis consequuntur tempore.
+    </p>
+{% endblock main_page %}
