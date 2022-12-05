@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.itercompat import is_iterable
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group, PermissionsMixin, _user_has_perm, \
-    _user_has_module_perms, _user_get_permissions
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group, _user_has_perm, \
+    _user_has_module_perms
 
 
 class CustomUserManager(BaseUserManager):
@@ -62,7 +62,7 @@ class CustomUser(AbstractBaseUser):
     second_name = models.CharField(max_length=50, verbose_name="Фамилия", null=False)
     patronymic = models.CharField(max_length=50, verbose_name="Отчество", blank=True, null=True)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, default=None, null=True, blank=True,
-                              verbose_name="Группа")
+                              verbose_name="Группа", related_query_name="group")
     birth_date = models.DateField(verbose_name="Дата рождения", null=False)
     date_joined = models.DateField(auto_now_add=True, verbose_name="Дата создания аккаунта")
     avatar = models.ImageField(upload_to="users/avatars", null=True, blank=True)
@@ -111,7 +111,9 @@ class CustomUser(AbstractBaseUser):
         """
         if not is_iterable(perm_list) or isinstance(perm_list, str):
             raise ValueError("perm_list must be an iterable of permissions.")
-        return all(self.has_perm(perm, obj) for perm in perm_list)
+        result = all(self.has_perm(perm, obj) for perm in perm_list)
+        print(result)
+        return result
 
     def has_module_perms(self, app_label):
         """
