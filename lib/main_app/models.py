@@ -100,12 +100,13 @@ class Instance(models.Model):
 
 
 class Rent(models.Model):
-    user_email = models.ForeignKey(CustomUser, models.CASCADE, null=False, verbose_name="Email пользователя")
+    user_email = models.ForeignKey(CustomUser, models.CASCADE, null=False, related_name='rent',
+                                   verbose_name="Email пользователя")
     instance_id = models.ForeignKey("Instance", models.CASCADE, null=False, related_name='rent',
                                     verbose_name="Экземпляр")
     start_date = models.DateField(verbose_name="Дата начала", null=False)
     end_date = models.DateField(verbose_name="Дата окончания", null=False)
-    actual_end_date = models.DateField(verbose_name="Дата сдачи", null=True)
+    actual_end_date = models.DateField(verbose_name="Дата сдачи", null=True, blank=True)
 
     class Meta:
         verbose_name = "Договор об аренде"

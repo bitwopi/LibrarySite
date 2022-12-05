@@ -1,0 +1,21 @@
+.avatar{
+    display: block;
+    width: 200px;
+    height: 200px;
+}
+.content{
+    display: grid;
+    grid-template-areas:
+        "avatar info info logout"
+        "avatar info info logout"
+        "books books books books";
+}
+.user-info{
+    grid-area: "info";
+}
+.book-list{
+    grid-area: "books";
+}
+.logout{
+    grid-area: "logout":
+}

@@ -88,10 +88,18 @@ class CustomUser(AbstractBaseUser):
         return self.email
 
     # OTHER METHODS
+    def get_full_name(self):
+        if self.patronymic:
+            return self.second_name + " " + self.first_name + " " + self.patronymic
+        else:
+            return self.second_name + " " + self.first_name
+
     def is_staff(self):
         if self.is_superuser:
             return True
         elif self.group.name == 'librarian':
+            return True
+        elif self.group.name == 'accountant':
             return True
         else:
             return False

@@ -20,4 +20,4 @@ class CustomUserAdmin(UserAdmin):
     filter_horizontal = ()
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+# admin.site.register(CustomUser, CustomUserAdmin)

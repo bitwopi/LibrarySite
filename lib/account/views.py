@@ -4,8 +4,10 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 
 from account.forms import LoginForm, RegistrationForm, ResetPasswordForm, ResetPasswordConfirmForm
+from main_app.models import Rent
 
 
 class LoginUser(LoginView):
@@ -51,6 +53,15 @@ class ResetPasswordConfirm(auth_views.PasswordResetConfirmView):
     def get_context_data(self, **kwargs):
         context = super(ResetPasswordConfirm, self).get_context_data(**kwargs)
         context['title'] = "Восстановление пароля"
+        return context
+
+
+class Profile(TemplateView):
+    template_name = 'account/profile/profile_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Profile, self).get_context_data(**kwargs)
+        context['rents'] = Rent.objects.filter(user_email=self.request.user.email)
         return context
 
 

@@ -15,7 +15,11 @@
             {% endblock category %}
             {% for book in books %}
                 <a href="{{ book.get_absolute_url }}">
-                    <img class="card" src="{{ book.cover.url }}">
+                    {% if book.cover %}
+                        <img class="card" src="{{ book.cover.url }}">
+                    {% else %}
+                        <img class="card" src="">
+                    {% endif %}
                 </a>
             {% endfor %}
             {% include 'main_app/includes/pagination.html' %}

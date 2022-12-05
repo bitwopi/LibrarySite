@@ -26,9 +26,9 @@
                 </form>
                 {% if request.user.is_authenticated %}
                     {% if request.user.avatar %}
-                        <a href="{% url 'logout' %}"><img class="avatar" src="{{ request.user.avatar.url }}"></a>
+                        <a href="{% url 'profile' %}"><img class="avatar" src="{{ request.user.avatar.url }}"></a>
                     {% else %}
-                        <a href="{% url 'logout' %}">{{ request.user.second_name }} {{ request.user.first_name }}</a>
+                        <a href="{% url 'profile' %}">{{ request.user.second_name }} {{ request.user.first_name }}</a>
                     {% endif %}
                 {% else %}
                     <a href="{% url 'login' %}">Login</a>
@@ -47,6 +47,8 @@
         {% endblock main_page %}
         {% block search %}
         {% endblock search %}
+        {% block profile %}
+        {% endblock profile %}
     </div>
     <div class="footer">
         <nav class="container">

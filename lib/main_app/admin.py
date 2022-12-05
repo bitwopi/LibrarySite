@@ -35,7 +35,10 @@ class BookAdmin(admin.ModelAdmin):
     readonly_fields = ('get_html_cover',)
 
     def get_html_cover(self, obj):
-        return mark_safe(f"<img src='{obj.cover.url}' width=50>")
+        if obj.cover:
+            return mark_safe(f"<img src='{obj.cover.url}' width=50>")
+        else:
+            return mark_safe(f"<img src='' width=50>")
 
     get_html_cover.short_description = "Миниатюра"
 
