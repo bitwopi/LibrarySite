@@ -1,23 +1,39 @@
 {% extends "main_app/base.html" %}
 {% load static %}
 {% block extrastyles %}
-    <link type="text/css" href="{% static '../css/profile.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static '/css/profile.css' %}" rel="stylesheet">
 {% endblock extrastyles %}
 {% block profile %}
     {% if user.avatar %}
         <img class="avatar" src="{{ user.avatar.url }}">
     {% endif %}
-    <div class="user-info">
+    <div class="user-info ">
         <h2>Пользовательская информация</h2>
-        <div class="user-info-item">Email: {{ user.email }}</div>
-        <div class="user-info-item">ФИО: {{ user.get_full_name }}</div>
-        <div class="user-info-item">Дата рождения: {{ user.birth_date }}</div>
+        <div class="list-item-bg">
+            <div class="user-info-item ">Email: <span class="text-border">{{ user.email }}</span></div>
+            <div class="user-info-item ">ФИО: <span class="text-border">{{ user.get_full_name }}</span></div>
+            <div class="user-info-item ">Дата рождения: <span class="text-border">{{ user.birth_date }}</span></div>
+        </div>
+   </div>
+    <div class="rent">
+        <h2>Список активных аренд</h2>
+        <div class="rent-list">
+        {% for rent in rents %}
+            {% if rent.actual_end_date is None %}
+            <div class="rent-list-item list-item-bg">
+                <p>Книга: <span class="text-border">{{ rent.instance_id.book }}</span></p>
+                <p>Дата начала: <span class="text-border">{{ rent.start_date }}</span></p>
+                <p>Дата окончания: <span class="text-border">{{ rent.end_date }}</span></p>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </div>
     </div>
     <div class="book-list">
-        <h2>Список книг</h2>
+        <h2>Список прочитанных вами книг</h2>
         {% for rent in rents %}
-            <div class="book-list-item"><a href="{{ rent.instance_id.book.get_absolute_url }}">{{ rent.instance_id.book }}</a></div>
+            <div class="book-list-item list-item-bg" ><a href="{{ rent.instance_id.book.get_absolute_url }}">{{ rent.instance_id.book }}</a></div>
         {% endfor %}
     </div>
-    <a href="{% url 'logout' %}">Выйти</a>
+    <h2><a class="logout" href="{% url 'logout' %}">Выйти</a></h2>
 {% endblock profile %}

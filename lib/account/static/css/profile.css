@@ -1,21 +1,68 @@
-.avatar{
+.content .avatar{
     display: block;
     width: 200px;
     height: 200px;
+    margin-bottom: 20px;
 }
 .content{
     display: grid;
     grid-template-areas:
         "avatar info info logout"
-        "avatar info info logout"
+        "rents rents rents rents"
         "books books books books";
+
+    grid-gap: 2em;
+    color: white;
+}
+.text-border{
+    text-shadow: 1px 0 3px #373737, 
+    0 1px 3px #373737, 
+    -1px 0 3px #373737, 
+    0 -1px 3px #373737;
 }
 .user-info{
-    grid-area: "info";
+    grid-area: info;
+}
+.rent{
+    grid-area: rents;
+}
+.rent-list{
+    display: flex;
+    flex-flow: wrap;
+}
+.rent-list-item{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.list-item-bg{
+    box-sizing: border-box;
+    background-color: #757575;
+    padding: 15px;
+    border-radius: 15px;
+    max-width: fit-content;
 }
 .book-list{
-    grid-area: "books";
+    grid-area: books;
+}
+.book-list-item{
+    margin-bottom: 5px;
+}
+.book-list-item a{
+    text-decoration: underline;
+    color: white;
+}
+.book-list-item a:hover{
+    color: #373737;
 }
 .logout{
-    grid-area: "logout":
+    grid-area: logout;
+    text-decoration: underline;
+    color: black;
+}
+p{
+    margin-top: 0px;
+}
+h2{
+    margin-top: 0px;
+    color: black
 }

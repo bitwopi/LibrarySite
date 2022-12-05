@@ -94,9 +94,14 @@ class Instance(models.Model):
     book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='instances', verbose_name="Книга")
     in_stock = models.BooleanField(default=True, verbose_name="В наличии")
 
+    # META CLASS
     class Meta:
         verbose_name = "Экземпляр"
         verbose_name_plural = "Экземпляры"
+
+    # TO STRING METHOD
+    def __str__(self):
+        return str(self.id) + "(" + self.book.name + ")"
 
 
 class Rent(models.Model):

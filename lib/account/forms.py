@@ -70,6 +70,9 @@ class RegistrationForm(UserCreationForm):
     second_name = forms.CharField(
         widget=forms.TextInput(attrs={"placeholder": "Фамилия"}),
     )
+    patronymic = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": "Отчество"}),
+    )
     birth_date = forms.DateField(
         widget=forms.DateInput(attrs={"placeholder": "Дата рождения"}),
     )
@@ -84,7 +87,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ["email", "first_name", "second_name", "birth_date"]
+        fields = ["email", "first_name", "second_name", "patronymic", "birth_date"]
 
 
 class ResetPasswordForm(PasswordResetForm):
