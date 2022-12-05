@@ -56,6 +56,10 @@
 }
 .logout{
     grid-area: logout;
+}
+.logout a{
+    display: block;
+    text-align: right;
     text-decoration: underline;
     color: black;
 }

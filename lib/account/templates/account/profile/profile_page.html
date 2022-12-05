@@ -21,6 +21,7 @@
         {% for rent in rents %}
             {% if rent.actual_end_date is None %}
             <div class="rent-list-item list-item-bg">
+                {{ rent.get_full_rent_cost }}
                 <p>Книга: <span class="text-border">{{ rent.instance_id.book }}</span></p>
                 <p>Дата начала: <span class="text-border">{{ rent.start_date }}</span></p>
                 <p>Дата окончания: <span class="text-border">{{ rent.end_date }}</span></p>
@@ -35,5 +36,10 @@
             <div class="book-list-item list-item-bg" ><a href="{{ rent.instance_id.book.get_absolute_url }}">{{ rent.instance_id.book }}</a></div>
         {% endfor %}
     </div>
-    <h2><a class="logout" href="{% url 'logout' %}">Выйти</a></h2>
+    <h2 class="logout">
+        <a href="{% url 'logout' %}">Выйти</a>
+        {% if user.group.name == 'accountant' %}
+            <a href="../../{{ report_url }}" download=""><button>Финансовый отчет за месяц</button></a>
+    {% endif %}
+    </h2>
 {% endblock profile %}

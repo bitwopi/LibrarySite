@@ -113,7 +113,13 @@ class Rent(models.Model):
     end_date = models.DateField(verbose_name="Дата окончания", null=False)
     actual_end_date = models.DateField(verbose_name="Дата сдачи", null=True, blank=True)
 
+    # META CLASS
     class Meta:
         verbose_name = "Договор об аренде"
         verbose_name_plural = "Договоры об аренде"
 
+    # OTHER METHODS
+    def get_full_rent_cost(self):
+        days = int((self.end_date - self.start_date).__str__().split(' ')[0])
+        day_cost = float(self.instance_id.book.get_rent_cost().__str__())
+        return int(day_cost * days)

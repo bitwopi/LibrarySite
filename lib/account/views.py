@@ -1,4 +1,8 @@
-from django.shortcuts import render, redirect
+import os
+import mimetypes
+
+from django.shortcuts import redirect
+from django.http import FileResponse, StreamingHttpResponse
 from django.views.generic import CreateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
@@ -6,8 +10,11 @@ from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
+from wsgiref.util import FileWrapper
+
 from account.forms import LoginForm, RegistrationForm, ResetPasswordForm, ResetPasswordConfirmForm
 from main_app.models import Rent
+from main_app.utils import get_month_report
 
 
 class LoginUser(LoginView):
@@ -62,9 +69,27 @@ class Profile(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Profile, self).get_context_data(**kwargs)
         context['rents'] = Rent.objects.filter(user_email=self.request.user.email)
+        context['title'] = "Профиль"
+        if self.request.user.group.name == 'accountant':
+            context['report_url'] = get_month_report()
         return context
 
 
 def logout_user(request):
     logout(request)
     return redirect('home')
+
+
+def download_report(request):
+    if request.user.group.name == 'accountant':
+        the_file = get_month_report()
+        filename = os.path.basename(the_file)
+        response = StreamingHttpResponse(
+            FileWrapper(
+                open(the_file, "rb"),
+            ),
+            content_type=mimetypes.guess_type(the_file)[0],
+        )
+        response["Content-Length"] = os.path.getsize(the_file)
+        response["Content-Disposition"] = f"attachment; filename={filename}"
+        return response
