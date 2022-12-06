@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group,
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, first_name, second_name, patronymic=None, password=None):
+    def create_user(self, email, first_name, second_name, birth_date=None, patronymic=None, password=None):
         """
         Creates and saves a User with the given email, first name, second name, patronymic and password.
         """
@@ -23,13 +23,14 @@ class CustomUserManager(BaseUserManager):
             first_name=first_name,
             second_name=second_name,
             patronymic=patronymic,
+            birth_date=birth_date,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, second_name, patronymic=None, password=None):
+    def create_superuser(self, email, first_name, second_name, birth_date=None, patronymic=None, password=None):
         """
         Creates and saves a User with the given email, first name, second name, patronymic and password.
         """
@@ -47,6 +48,7 @@ class CustomUserManager(BaseUserManager):
             first_name=first_name,
             second_name=second_name,
             patronymic=patronymic,
+            birth_date=birth_date,
             is_superuser=True,
         )
 

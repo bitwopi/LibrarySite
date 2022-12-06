@@ -38,7 +38,9 @@
     </div>
     <h2 class="logout">
         <a href="{% url 'logout' %}">Выйти</a>
-        {% if user.group.name == 'accountant' %}
+        {% if user.group.name == 'librarian' %}
+            <a href="../../admin"><button>Админ панель</button></a>
+        {% elif user.group.name == 'accountant' %}
             <a href="../../{{ report_url }}" download=""><button>Финансовый отчет за месяц</button></a>
     {% endif %}
     </h2>

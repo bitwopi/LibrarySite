@@ -54,7 +54,7 @@ class Genre(models.Model):
 class Book(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название", null=False)
     slug = models.CharField(max_length=100, null=False)
-    description = models.TextField(verbose_name="Описание", null=True)
+    description = models.TextField(verbose_name="Описание", null=True, blank=True)
     pages = models.IntegerField(verbose_name="Количество страниц", null=False)
     cost = models.FloatField(verbose_name="Цена", null=False)
     cover = models.ImageField(upload_to="books/covers", null=True, blank=True, verbose_name="Обложка")
@@ -101,7 +101,7 @@ class Instance(models.Model):
 
     # TO STRING METHOD
     def __str__(self):
-        return str(self.id) + "(" + self.book.name + ")"
+        return f'{self.id} ({self.book.name})'
 
 
 class Rent(models.Model):
@@ -117,6 +117,10 @@ class Rent(models.Model):
     class Meta:
         verbose_name = "Договор об аренде"
         verbose_name_plural = "Договоры об аренде"
+
+    # TO STRING METHOD
+    def __str__(self):
+        return f"Договор об аренде №{self.id}"
 
     # OTHER METHODS
     def get_full_rent_cost(self):
