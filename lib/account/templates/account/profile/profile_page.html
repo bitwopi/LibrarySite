@@ -6,6 +6,8 @@
 {% block profile %}
     {% if user.avatar %}
         <img class="avatar" src="{{ user.avatar.url }}">
+    {% else %}
+        <img class="avatar" src="{% static '/images/std_avatar.png' %}">
     {% endif %}
     <div class="user-info ">
         <h2>Пользовательская информация</h2>
@@ -15,6 +17,7 @@
             <div class="user-info-item ">Дата рождения: <span class="text-border">{{ user.birth_date }}</span></div>
         </div>
    </div>
+    {% if rents is not None %}
     <div class="rent">
         <h2>Список активных аренд</h2>
         <div class="rent-list">
@@ -36,6 +39,15 @@
             <div class="book-list-item list-item-bg" ><a href="{{ rent.instance_id.book.get_absolute_url }}">{{ rent.instance_id.book }}</a></div>
         {% endfor %}
     </div>
+    {% else %}
+        <div class="rent">
+            <h2>Список активных аренд</h2>
+            <div class="rent-list-item list-item-bg">У вас нет активных аренд</div>
+        <div class="book-list">
+            <h2>Список прочитанных вами книг</h2>
+            <div class="book-list-item list-item-bg" >У вас нет книг в списке</div>
+        </div>
+    {% endif %}
     <h2 class="logout">
         <a href="{% url 'logout' %}">Выйти</a>
         {% if user.group.name == 'librarian' %}

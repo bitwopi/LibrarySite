@@ -70,7 +70,7 @@ class Profile(TemplateView):
         context = super(Profile, self).get_context_data(**kwargs)
         context['rents'] = Rent.objects.filter(user_email=self.request.user.email)
         context['title'] = "Профиль"
-        if self.request.user.group.name == 'accountant':
+        if self.request.user.group and self.request.user.group.name == 'accountant':
             context['report_url'] = get_month_report()
         return context
 
