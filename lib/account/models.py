@@ -99,10 +99,11 @@ class CustomUser(AbstractBaseUser):
     def is_staff(self):
         if self.is_superuser:
             return True
-        elif self.group.name == 'librarian':
-            return True
-        elif self.group.name == 'accountant':
-            return True
+        elif self.group:
+            if self.group.name == 'librarian':
+                return True
+            elif self.group.name == 'accountant':
+                return True
         else:
             return False
 
